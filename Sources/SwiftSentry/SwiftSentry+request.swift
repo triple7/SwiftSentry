@@ -51,6 +51,7 @@ extension SwiftSentry {
             
             var result = SentryResult()
             if self!.requestIsValid(error: error, response: response) {
+                print(String(data: data!, encoding: .utf8))
                 switch tableType {
                 case .closeApproach:
                     result.setCloseApproach(try! JSONDecoder().decode(CloseApproach.self, from: data!))
