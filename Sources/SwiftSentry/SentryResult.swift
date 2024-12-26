@@ -9,12 +9,12 @@
 import Foundation
 
 public struct SentryResult:Codable {
-    var closeApproach:CloseApproach?
-    var stateVector:StateVectorData?
-    var observerData:ObserverData?
-    var orbitalElements:OrbitalElementsData?
-    var physicalData:PhysicalData?
-    var list:SentryResultList?
+    public var closeApproach:CloseApproach?
+    public var stateVector:StateVectorData?
+    public var observerData:ObserverData?
+    public var orbitalElements:OrbitalElementsData?
+    public var physicalData:PhysicalData?
+    public var list:SentryResultList?
 
     public mutating func setCloseApproach(_ value: CloseApproach?) {
         self.closeApproach = value
@@ -145,26 +145,26 @@ public struct PhysicalObject: Codable {
 
 
 public struct SentryResultList: Codable {
-    let count: String
-    let data: [SentryListResult]
-    let signature:SentrySignature
+    public let count: String
+    public let data: [SentryListResult]
+    public let signature:SentrySignature
 }
 
 public struct SentryListResult: Codable {
-    let id: String
-    let range: String
-    let des: String
-    let fullname: String
-    let diameter: String
-    let lastObs: String
-    let psCum: String
-    let ip: String
-    let psMax: String
-    let nImp: Int
-    let h: String
-    var tsMax: String?
-    let lastObsJD: String
-    let vInf: String
+    public let id: String
+    public let range: String
+    public let des: String
+    public let fullname: String
+    public let diameter: String
+    public let lastObs: String
+    public let psCum: String
+    public let ip: String
+    public let psMax: String
+    public let nImp: Int
+    public let h: String
+    public var tsMax: String?
+    public let lastObsJD: String
+    public let vInf: String
     
     // Map snake_case keys to camelCase properties
     enum CodingKeys: String, CodingKey {
