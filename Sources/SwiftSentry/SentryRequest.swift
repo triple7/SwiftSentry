@@ -34,7 +34,7 @@ public struct SentryRequest {
     /** Sentry request formatter
      Creates a request Url from the API and configured parameters, with start and end time
      */
-private let APIUrl = "https://ssd-api.jpl.nasa.gov/api/sentry.api"
+private let APIUrl = "https://ssd-api.jpl.nasa.gov/sentry.api"
     private(set) var parameters:[String: String]
 
     public init(target: String, startTime: String, stopTime: String, stepSize: String, tableType: TableType) {
