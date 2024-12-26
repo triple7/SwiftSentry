@@ -51,7 +51,7 @@ extension SwiftSentry {
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
         
         print(request.url!.absoluteString)
-        let task = session.dataTask(with: request.url!) { [weak self] data, response, error in
+        let task = session.dataTask(with: request) { [weak self] data, response, error in
             
             var result = SentryResult()
             if self!.requestIsValid(error: error, response: response) {
