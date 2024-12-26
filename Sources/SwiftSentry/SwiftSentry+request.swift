@@ -50,11 +50,9 @@ extension SwiftSentry {
         let queue = OperationQueue.main
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
         
-        print(request.getUrl().absoluteString)
         let task = session.dataTask(with: request.getUrl()) { [weak self] data, response, error in
             
             var result = SentryResult()
-            print(String(data: data!, encoding: .ascii))
             if self!.requestIsValid(error: error, response: response) {
                 switch tableType {
                 case .closeApproach:
