@@ -35,7 +35,7 @@ extension SwiftSentry {
         return !gotError
     }
     
-    public func getSentryData(target: String, startTime: String, stopTime: String, stepSize: String = "5m", tableType: TableType = .closeApproach, closure: @escaping (SentryResult)-> Void) {
+    public func getSentryData(target: String, startTime: String, stopTime: String, stepSize: String = "5m", tableType: TableType = .List, closure: @escaping (SentryResult)-> Void) {
         /** Gets a single target sentry data
          Params:
          target: target name (asteroid in horizons syntax)
@@ -67,6 +67,8 @@ extension SwiftSentry {
                     result.setOrbitalElements(try! JSONDecoder().decode(OrbitalElementsData.self, from: data!))
                 case .physical:
                     result.setPhysicalData(try! JSONDecoder().decode(PhysicalData.self, from: data!))
+                case .List:
+                    result.setResultList(try! JSONDecoder().decode(SentryResultList.self, from: data!))
                 }
                 
                 self?.sysLog.append(SentrySyslog(log: .OK, message: "target \(target) \(tableType.rawValue)) downloaded"))

@@ -12,4 +12,5 @@ public enum TableType: String, Codable {
     case observer = "OBSERVER"   // Observer-Centric Data
     case orbitalElements = "ELEMENTS" // Orbital Elements
     case physical = "PHYSICAL"   // Physical Characteristics
+    case List = "List"
 }

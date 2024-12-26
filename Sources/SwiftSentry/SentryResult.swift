@@ -14,6 +14,7 @@ public struct SentryResult:Codable {
     var observerData:ObserverData?
     var orbitalElements:OrbitalElementsData?
     var physicalData:PhysicalData?
+    var list:SentryResultList?
 
     public mutating func setCloseApproach(_ value: CloseApproach?) {
         self.closeApproach = value
@@ -33,6 +34,10 @@ public struct SentryResult:Codable {
 
     public mutating func setPhysicalData(_ value: PhysicalData?) {
         self.physicalData = value
+    }
+
+    public mutating func setResultList(_ value: SentryResultList?) {
+        self.list = value
     }
 
 }
@@ -136,4 +141,41 @@ public struct PhysicalObject: Codable {
     let diameterMaxKm: Double
     let albedo: Double
     let rotationPeriodHours: Double?
+}
+
+
+public struct SentryResultList: Codable {
+    let count: String
+    let data: [SentryResult]
+    
+    struct SentryResult: Codable {
+        let id: String
+        let range: String
+        let des: String
+        let fullname: String
+        let diameter: String
+        let lastObs: String
+        let psCum: String
+        let ip: String
+        let psMax: String
+        let nImp: Int
+        let h: String
+        let tsMax: String
+        let lastObsJD: String
+        let vInf: String
+        
+        // Map snake_case keys to camelCase properties
+        enum CodingKeys: String, CodingKey {
+            case id, range, des, fullname, diameter
+            case lastObs = "last_obs"
+            case psCum = "ps_cum"
+            case ip
+            case psMax = "ps_max"
+            case nImp = "n_imp"
+            case h
+            case tsMax = "ts_max"
+            case lastObsJD = "last_obs_jd"
+            case vInf = "v_inf"
+        }
+    }
 }
