@@ -162,7 +162,7 @@ public struct SentryListResult: Codable {
     let psMax: String
     let nImp: Int
     let h: String
-    let tsMax: String
+    var tsMax: String?
     let lastObsJD: String
     let vInf: String
     
