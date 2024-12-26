@@ -15,6 +15,7 @@ public struct SentryResult:Codable {
     public var orbitalElements:OrbitalElementsData?
     public var physicalData:PhysicalData?
     public var list:SentryResultList?
+    public var sentryImpact:SentryImpact?
 
     public mutating func setCloseApproach(_ value: CloseApproach?) {
         self.closeApproach = value
@@ -38,6 +39,10 @@ public struct SentryResult:Codable {
 
     public mutating func setResultList(_ value: SentryResultList?) {
         self.list = value
+    }
+
+    public mutating func setSentryImpact(_ value: SentryImpact?) {
+        self.sentryImpact = value
     }
 
 }
@@ -186,3 +191,76 @@ public     struct SentrySignature:Codable {
     let source:String
 }
 
+public struct SentryImpact: Codable {
+    let data: [ImpactData]
+    let signature: SentrySignature
+    let summary: Summary
+    
+    }
+
+public struct ImpactData: Codable {
+    let ps: String
+    let ip: String
+    let energy: String
+    let ts: String
+    let date: String
+    let sigmaVi: String
+    
+    enum CodingKeys: String, CodingKey {
+        case ps, ip, energy, ts, date
+        case sigmaVi = "sigma_vi"
+    }
+}
+
+
+public struct Summary: Codable {
+    let diameter: String
+    let tsMax: String
+    let psCum: String
+    let ip: String
+    let vImp: String
+    let nobs: Int
+    let energy: String
+    let nImp: Int
+    let pdate: String
+    let mass: String
+    let method: String
+    let cdate: String
+    let ndel: Int
+    let fullname: String
+    let nsat: String
+    let h: String
+    let firstObs: String
+    let ndop: Int
+    let lastObs: String
+    let des: String
+    let darc: String
+    let vInf: String
+    let psMax: String
+    
+    enum CodingKeys: String, CodingKey {
+        case diameter
+        case tsMax = "ts_max"
+        case psCum = "ps_cum"
+        case ip
+        case vImp = "v_imp"
+        case nobs
+        case energy
+        case nImp = "n_imp"
+        case pdate
+        case mass
+        case method
+        case cdate
+        case ndel
+        case fullname
+        case nsat
+        case h
+        case firstObs = "first_obs"
+        case ndop
+        case lastObs = "last_obs"
+        case des
+        case darc
+        case vInf = "v_inf"
+        case psMax = "ps_max"
+    }
+}

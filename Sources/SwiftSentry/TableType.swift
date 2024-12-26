@@ -13,4 +13,5 @@ public enum TableType: String, Codable {
     case orbitalElements = "ELEMENTS" // Orbital Elements
     case physical = "PHYSICAL"   // Physical Characteristics
     case List = "List"
+    case Impactprobability = "ImpactProbability"
 }

@@ -51,7 +51,6 @@ extension SwiftSentry {
             
             var result = SentryResult()
             if self!.requestIsValid(error: error, response: response) {
-                print(String(data: data!, encoding: .utf8))
                 switch tableType {
                 case .closeApproach:
                     result.setCloseApproach(try! JSONDecoder().decode(CloseApproach.self, from: data!))
@@ -65,6 +64,8 @@ extension SwiftSentry {
                     result.setPhysicalData(try! JSONDecoder().decode(PhysicalData.self, from: data!))
                 case .List:
                     result.setResultList(try! JSONDecoder().decode(SentryResultList.self, from: data!))
+                case .Impactprobability:
+                    result.setSentryImpact(try! JSONDecoder().decode(SentryImpact.self, from: data!))
                 }
                 
                 self?.sysLog.append(SentrySyslog(log: .OK, message: "\(tableType.rawValue)) downloaded"))
