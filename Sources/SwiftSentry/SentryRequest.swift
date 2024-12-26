@@ -35,22 +35,22 @@ public struct SentryRequest {
      Creates a request Url from the API and configured parameters, with start and end time
      */
 private let APIUrl = "https://ssd.jpl.nasa.gov/api/sentry.api"
-    private var parameters:SentryParams!
-    
+    private(set) var parameters:[String: String]
+
     public init(target: String, startTime: String, stopTime: String, stepSize: String, tableType: TableType) {
-        self.parameters =
-        SentryParams(command: target, startTime: startTime, stopTime: stopTime, stepSize: stepSize, tableType: tableType)
+        self.parameters = [
+            "target": target,
+            "startTime": startTime,
+            "stopTime": stopTime,
+            "stepSize": stepSize,
+            "tableType": tableType.rawValue
+        ]
     }
     
-    public func setupRequest() -> URLRequest {
-        let url = URL(string: APIUrl)!
-        let jsonData = try! JSONEncoder().encode(self.parameters)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
-        return request
+    public func getUrl() -> URL {
+        var url = URLComponents(string: APIUrl)
+        url!.queryItems = Array(parameters.keys).map {URLQueryItem(name: $0, value: parameters[$0]!)}
+        return url!.url!
     }
 
 }

@@ -45,13 +45,13 @@ extension SwiftSentry {
          tableType: type of data to return (see TableType enum)
          closure: the resulting json data
          */
-        let request = SentryRequest(target: target, startTime: startTime, stopTime: stopTime, stepSize: stepSize, tableType: tableType).setupRequest()
+        let request = SentryRequest(target: target, startTime: startTime, stopTime: stopTime, stepSize: stepSize, tableType: tableType)
         let configuration = URLSessionConfiguration.ephemeral
         let queue = OperationQueue.main
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
         
-        print(request.url!.absoluteString)
-        let task = session.dataTask(with: request) { [weak self] data, response, error in
+        print(request.getUrl().absoluteString)
+        let task = session.dataTask(with: request.getUrl()) { [weak self] data, response, error in
             
             var result = SentryResult()
             if self!.requestIsValid(error: error, response: response) {
