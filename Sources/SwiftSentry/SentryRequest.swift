@@ -39,11 +39,7 @@ private let APIUrl = "https://ssd.jpl.nasa.gov/api/sentry.api"
 
     public init(target: String, startTime: String, stopTime: String, stepSize: String, tableType: TableType) {
         self.parameters = [
-            "target": target,
-            "startTime": startTime,
-            "stopTime": stopTime,
-            "stepSize": stepSize,
-            "tableType": tableType.rawValue
+            "des": target,
         ]
     }
     
