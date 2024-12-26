@@ -54,6 +54,7 @@ extension SwiftSentry {
         let task = session.dataTask(with: request.getUrl()) { [weak self] data, response, error in
             
             var result = SentryResult()
+            print(String(data: data!, encoding: .ascii))
             if self!.requestIsValid(error: error, response: response) {
                 switch tableType {
                 case .closeApproach:
