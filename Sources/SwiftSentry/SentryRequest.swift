@@ -37,8 +37,8 @@ public struct SentryRequest {
 private let APIUrl = "https://ssd-api.jpl.nasa.gov/sentry.api"
     private(set) var parameters:[String: String]
 
-    public init(target: String, startTime: String, stopTime: String, stepSize: String, tableType: TableType) {
-        self.parameters = [String: String]()
+    public init(parameters: [String:String] = [:]) {
+        self.parameters = parameters
     }
     
     public func getUrl() -> URL {

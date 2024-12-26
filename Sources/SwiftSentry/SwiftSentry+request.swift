@@ -35,17 +35,14 @@ extension SwiftSentry {
         return !gotError
     }
     
-    public func getSentryData(target: String, startTime: String, stopTime: String, stepSize: String = "5m", tableType: TableType = .List, closure: @escaping (SentryResult)-> Void) {
+    public func getSentryData(parameters: [String:String], tableType: TableType = .List, closure: @escaping (SentryResult)-> Void) {
         /** Gets a single target sentry data
          Params:
-         target: target name (asteroid in horizons syntax)
-         startTime: Start time of sentry data evaluation
-         stopTime: stop time of sentry data evaluation
-         stepSize: time per step
-         tableType: type of data to return (see TableType enum)
+         parameters: any extra GEt parameters
+         tableType: what return format
          closure: the resulting json data
          */
-        let request = SentryRequest(target: target, startTime: startTime, stopTime: stopTime, stepSize: stepSize, tableType: tableType)
+        let request = SentryRequest(parameters: parameters)
         let configuration = URLSessionConfiguration.ephemeral
         let queue = OperationQueue.main
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
@@ -69,7 +66,7 @@ extension SwiftSentry {
                     result.setResultList(try! JSONDecoder().decode(SentryResultList.self, from: data!))
                 }
                 
-                self?.sysLog.append(SentrySyslog(log: .OK, message: "target \(target) \(tableType.rawValue)) downloaded"))
+                self?.sysLog.append(SentrySyslog(log: .OK, message: "\(tableType.rawValue)) downloaded"))
             }
             closure(result)
             return
