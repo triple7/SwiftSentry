@@ -47,7 +47,7 @@ private let APIUrl = "https://ssd.jpl.nasa.gov/api/sentry.api"
         let jsonData = try! JSONEncoder().encode(self.parameters)
         
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
         return request
