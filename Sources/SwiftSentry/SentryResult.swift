@@ -146,36 +146,43 @@ public struct PhysicalObject: Codable {
 
 public struct SentryResultList: Codable {
     let count: String
-    let data: [SentryResult]
+    let data: [SentryListResult]
+    let signature:SentrySignature
+}
+
+public struct SentryListResult: Codable {
+    let id: String
+    let range: String
+    let des: String
+    let fullname: String
+    let diameter: String
+    let lastObs: String
+    let psCum: String
+    let ip: String
+    let psMax: String
+    let nImp: Int
+    let h: String
+    let tsMax: String
+    let lastObsJD: String
+    let vInf: String
     
-    struct SentryResult: Codable {
-        let id: String
-        let range: String
-        let des: String
-        let fullname: String
-        let diameter: String
-        let lastObs: String
-        let psCum: String
-        let ip: String
-        let psMax: String
-        let nImp: Int
-        let h: String
-        let tsMax: String
-        let lastObsJD: String
-        let vInf: String
-        
-        // Map snake_case keys to camelCase properties
-        enum CodingKeys: String, CodingKey {
-            case id, range, des, fullname, diameter
-            case lastObs = "last_obs"
-            case psCum = "ps_cum"
-            case ip
-            case psMax = "ps_max"
-            case nImp = "n_imp"
-            case h
-            case tsMax = "ts_max"
-            case lastObsJD = "last_obs_jd"
-            case vInf = "v_inf"
-        }
+    // Map snake_case keys to camelCase properties
+    enum CodingKeys: String, CodingKey {
+        case id, range, des, fullname, diameter
+        case lastObs = "last_obs"
+        case psCum = "ps_cum"
+        case ip
+        case psMax = "ps_max"
+        case nImp = "n_imp"
+        case h
+        case tsMax = "ts_max"
+        case lastObsJD = "last_obs_jd"
+        case vInf = "v_inf"
     }
 }
+
+public     struct SentrySignature:Codable {
+    let version:String
+    let source:String
+}
+
